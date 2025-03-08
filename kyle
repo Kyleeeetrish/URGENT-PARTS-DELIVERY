@@ -1,0 +1,207 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Urgent Delivery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <header>
+      <h1 class="header">EPSON</h1>
+    </header>
+    <div class="login-form">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="3124411" required>
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="3124411" required>
+        
+        <label for="role">Role</label>
+        <input type="text" id="role" value="3STGML0001" readonly>
+        
+        <button type="submit" id="loginButton">Login</button>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
+<!-- urgent-parts-delivery.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urgent Delivery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1 class="header">EPSON</h1>
+    <div class="user-name">Kyle Razsile Macauba</div>
+  </header>
+
+  <div class="main-content">
+    <h2>Urgent Parts Delivery</h2>
+    <button onclick="window.location.href='selection.html'">Parts Delivery</button>
+  </div>
+</body>
+</html>
+<!-- selection.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selection - Urgent Delivery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1 class="header">EPSON</h1>
+    <div class="user-name">Kyle Razsile Macauba</div>
+  </header>
+
+  <div class="main-content">
+    <h2>Parts Selection</h2>
+    <table class="parts-table">
+      <thead>
+        <tr>
+          <th>Parts Code</th>
+          <th>Parts Name</th>
+          <th>Line Station</th>
+          <th>Status</th>
+          <th>Selection</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example rows -->
+        <tr>
+          <td>123456789</td>
+          <td>Printer Cartridge</td>
+          <td>IPDB13-056</td>
+          <td>WAIT</td>
+          <td><button onclick="window.location.href='transaction.html'">Deliver</button></td>
+        </tr>
+        <tr>
+          <td>987654321</td>
+          <td>Print Head</td>
+          <td>IPDB13-012</td>
+          <td>TRANSFER</td>
+          <td><button onclick="window.location.href='transaction.html'">Deliver</button></td>
+        </tr>
+        <!-- Add 28 more rows as required -->
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+<!-- transaction.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction - Urgent Delivery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1 class="header">EPSON</h1>
+    <div class="user-name">Kyle Razsile Macauba</div>
+  </header>
+
+  <div class="main-content">
+    <h2>Transaction Details</h2>
+    <!-- Information Upper -->
+    <div class="info-upper">
+      <p>Parts Code: 123456789</p>
+      <p>Parts Name: Printer Cartridge</p>
+      <p>Line Station: IPDB13-056</p>
+      <p>Status: WAIT</p>
+    </div>
+    
+    <hr />
+    
+    <!-- Information Lower -->
+    <div class="info-lower">
+      <label for="line-station">Line Station:</label>
+      <input type="text" id="line-station" placeholder="IPDB13-056" />
+      <label for="rfid">RFID Number:</label>
+      <input type="text" id="rfid" placeholder="ABC1234567" />
+      <button onclick="checkTransaction()">Submit</button>
+    </div>
+    
+    <!-- Message Bar -->
+    <div id="message-bar"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+<!-- ok.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction Completed</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1 class="header">EPSON</h1>
+    <div class="user-name">Kyle Razsile Macauba</div>
+  </header>
+
+  <div class="main-content">
+    <h2>Transaction Complete</h2>
+    <p>Parts delivered successfully!</p>
+    <button onclick="window.location.href='login.html'">Go to Home</button>
+  </div>
+</body>
+</html>
+// app.js
+
+// Simulating Data Bank
+const dataBank = [
+  {
+    partCode: '123456789',
+    partName: 'Printer Cartridge',
+    lineStation: 'IPDB13-056',
+    status: 'WAIT',
+    rfid: 'ABC1234567',
+    lotNumber: '1234567890123456',
+    remarks: 'N/A',
+    creationDate: '2025-03-08',
+    pickDate: '2025-03-09',
+    transferDate: '2025-03-10',
+    deliveryReceived: '2025-03-11',
+    transferTime: '2025-03-12',
+    username: 'Kyle Razsile Macauba',
+  },
+  // Add 29 more parts
+];
+
+// Example of checking transaction data
+function checkTransaction() {
+  const lineStationInput = document.getElementById('line-station').value;
+  const rfidInput = document.getElementById('rfid').value;
+  
+  const selectedPart = dataBank.find(part => part.lineStation === 'IPDB13-056');
+  
+  if (selectedPart) {
+    if (lineStationInput === selectedPart.lineStation && rfidInput === selectedPart.rfid) {
+      document.getElementById('message-bar').textContent = "Parts Delivered Successfully!";
+    } else {
+      document.getElementById('message-bar').textContent = "Actual parts are different.";
+    }
+  } else {
+    document.getElementById('message-bar').textContent = "Part not found.";
+  }
+}
